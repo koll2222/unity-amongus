@@ -126,6 +126,13 @@ public class CreateRoomUI : MonoBehaviour
         }
     }
 
+    public void CreateRoom()
+    {
+        var m_manager = AmongUsRoomManager.singleton;
+        // 방 설정 작업 처리
+        m_manager.StartHost();
+    }
+
 }
 
 public class CreateGameRoomData
