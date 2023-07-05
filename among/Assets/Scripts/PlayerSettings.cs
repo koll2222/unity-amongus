@@ -9,6 +9,6 @@ public enum EControlType
 
 public class PlayerSettings
 {
-    public static EControlType controlType;
-    public static string nickname;
+    public static EControlType m_ControlType;
+    public static string m_Nickname;
 }

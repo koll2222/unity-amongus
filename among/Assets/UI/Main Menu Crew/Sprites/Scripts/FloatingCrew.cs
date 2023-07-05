@@ -4,36 +4,36 @@ using UnityEngine;
 
 public class FloatingCrew : MonoBehaviour
 {
-    public EPlayerColor playerColor;
+    public EPlayerColor m_PlayerColor;
 
-    private SpriteRenderer spriteRenderer;
-    private Vector3 direction;
-    private float floatingSpeed;
-    private float rotateSpeed;
+    private SpriteRenderer m_SpriteRenderer;
+    private Vector3 m_Direction;
+    private float m_FloatingSpeed;
+    private float m_RotateSpeed;
 
     private void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        m_SpriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     public void SetFloatingCrew(Sprite _sprite, EPlayerColor _playerColor, Vector3 _direction, float _floatingSpeed, float _rotateSpeed, float _Size)
     {
-        this.playerColor= _playerColor;
-        this.direction= _direction;
-        this.floatingSpeed= _floatingSpeed;
-        this.rotateSpeed= _rotateSpeed;
+        this.m_PlayerColor= _playerColor;
+        this.m_Direction= _direction;
+        this.m_FloatingSpeed= _floatingSpeed;
+        this.m_RotateSpeed= _rotateSpeed;
 
-        spriteRenderer.sprite = _sprite;
-        spriteRenderer.material.SetColor("_PlayerColor", PlayerColor.GetColor(_playerColor));
+        m_SpriteRenderer.sprite = _sprite;
+        m_SpriteRenderer.material.SetColor("_PlayerColor", PlayerColor.GetColor(_playerColor));
 
         transform.localScale = new Vector3(_Size, _Size, _Size);
-        spriteRenderer.sortingOrder = (int)Mathf.Lerp(1, 32767, _Size);
+        m_SpriteRenderer.sortingOrder = (int)Mathf.Lerp(1, 32767, _Size);
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position += direction * floatingSpeed * Time.deltaTime;
-        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, 0f, rotateSpeed));
+        transform.position += m_Direction * m_FloatingSpeed * Time.deltaTime;
+        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, 0f, m_RotateSpeed));
     }
 }

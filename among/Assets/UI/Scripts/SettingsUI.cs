@@ -6,43 +6,43 @@ using UnityEngine.UI;
 public class SettingsUI : MonoBehaviour
 {
     [SerializeField]
-    private Button MouseControlButton;
+    private Button m_MouseControlButton;
     [SerializeField]
-    private Button KeyboardMouseControlButton;
-    private Animator animator;
+    private Button m_KeyboardMouseControlButton;
+    private Animator m_Animator;
 
     private void Awake()
     {
-        animator= GetComponent<Animator>();
+        m_Animator= GetComponent<Animator>();
     }
 
     private void OnEnable()
     {
-        switch (PlayerSettings.controlType)
+        switch (PlayerSettings.m_ControlType)
         {
             case EControlType.Mouse:
-                MouseControlButton.image.color = Color.green;
-                KeyboardMouseControlButton.image.color = Color.white;
+                m_MouseControlButton.image.color = Color.green;
+                m_KeyboardMouseControlButton.image.color = Color.white;
                 break;
             case EControlType.KeboardMouse:
-                MouseControlButton.image.color = Color.white;
-                KeyboardMouseControlButton.image.color = Color.green;
+                m_MouseControlButton.image.color = Color.white;
+                m_KeyboardMouseControlButton.image.color = Color.green;
                 break;
         }
     }
 
     public void SetControlMode(int _controlType)
     {
-        PlayerSettings.controlType = (EControlType)_controlType;
-        switch (PlayerSettings.controlType)
+        PlayerSettings.m_ControlType = (EControlType)_controlType;
+        switch (PlayerSettings.m_ControlType)
         {
             case EControlType.Mouse:
-                MouseControlButton.image.color = Color.green;
-                KeyboardMouseControlButton.image.color = Color.white;
+                m_MouseControlButton.image.color = Color.green;
+                m_KeyboardMouseControlButton.image.color = Color.white;
                 break;
             case EControlType.KeboardMouse:
-                MouseControlButton.image.color = Color.white;
-                KeyboardMouseControlButton.image.color = Color.green;
+                m_MouseControlButton.image.color = Color.white;
+                m_KeyboardMouseControlButton.image.color = Color.green;
                 break;
         }
     }
@@ -54,10 +54,10 @@ public class SettingsUI : MonoBehaviour
 
     private IEnumerator CloseAfterDelay()
     {
-        animator.SetTrigger("close");
+        m_Animator.SetTrigger("close");
         yield return new WaitForSeconds(0.5f);
         gameObject.SetActive(false);
-        animator.ResetTrigger("close");
+        m_Animator.ResetTrigger("close");
     }
 
 }

@@ -6,14 +6,14 @@ public class GameRoomSettingsUI : SettingsUI
 {
     public void ExitGameRoom()
     {
-        var m_manager = AmongUsRoomManager.singleton;
-        if(m_manager.mode == Mirror.NetworkManagerMode.Host)
+        var manager = AmongUsRoomManager.singleton;
+        if(manager.mode == Mirror.NetworkManagerMode.Host)
         {
-            m_manager.StopHost();
+            manager.StopHost();
         }
-        else if(m_manager.mode == Mirror.NetworkManagerMode.ClientOnly)
+        else if(manager.mode == Mirror.NetworkManagerMode.ClientOnly)
         {
-            m_manager.StopClient();
+            manager.StopClient();
         }
     }
 }

@@ -7,82 +7,82 @@ using UnityEngine.UI;
 public class CreateRoomUI : MonoBehaviour
 {
     [SerializeField]
-    private List<Image> crewImgs;
+    private List<Image> m_CrewImgs;
     [SerializeField]
-    private List<Image> imposterCountButtons;
+    private List<Image> m_ImposterCountButtons;
 
     [SerializeField]
-    private List<Image> maxPlayerCountButtons;
+    private List<Image> m_MaxPlayerCountButtons;
 
-    private CreateGameRoomData roomData;
+    private CreateGameRoomData m_RoomData;
     
     // Start is called before the first frame update
     void Start()
     {
-        for(int i = 0; i < crewImgs.Count; i++)
+        for(int i = 0; i < m_CrewImgs.Count; i++)
         {
-            Material materialInstance = Instantiate(crewImgs[i].material);
-            crewImgs[i].material = materialInstance;
+            Material materialInstance = Instantiate(m_CrewImgs[i].material);
+            m_CrewImgs[i].material = materialInstance;
         }
-        roomData = new CreateGameRoomData() { imposterCount = 1, maxPlayerCount = 10 };
+        m_RoomData = new CreateGameRoomData() { imposterCount = 1, maxPlayerCount = 10 };
         UpdateCrewImages();
     }
 
     public void UpdateImposterCount(int _count)
     {
-        roomData.imposterCount = _count;
+        m_RoomData.imposterCount = _count;
 
-        for(int i = 0; i < imposterCountButtons.Count; i++)
+        for(int i = 0; i < m_ImposterCountButtons.Count; i++)
         {
             if(i == _count - 1)
             {
-                imposterCountButtons[i].GetComponent<Button>().image.color = new Color(1f, 1f, 1f, 1f);
+                m_ImposterCountButtons[i].GetComponent<Button>().image.color = new Color(1f, 1f, 1f, 1f);
             }
             else
             {
-                imposterCountButtons[i].GetComponent<Button>().image.color = new Color(1f, 1f, 1f, 0f);
+                m_ImposterCountButtons[i].GetComponent<Button>().image.color = new Color(1f, 1f, 1f, 0f);
             }
         }
 
-        int m_limitMaxPlayer = _count == 1 ? 4 : _count == 2 ? 7 : 9;
-        if(roomData.maxPlayerCount < m_limitMaxPlayer)
+        int limitMaxPlayer = _count == 1 ? 4 : _count == 2 ? 7 : 9;
+        if(m_RoomData.maxPlayerCount < limitMaxPlayer)
         {
-            UpdateMaxPlayerCount(m_limitMaxPlayer);
+            UpdateMaxPlayerCount(limitMaxPlayer);
         }
         else
         {
-            UpdateMaxPlayerCount(roomData.maxPlayerCount);
+            UpdateMaxPlayerCount(m_RoomData.maxPlayerCount);
         }
 
-        for(int i = 0; i < maxPlayerCountButtons.Count; i++)
+        for(int i = 0; i < m_MaxPlayerCountButtons.Count; i++)
         {
-            var m_text = maxPlayerCountButtons[i].GetComponentInChildren<TMPro.TextMeshProUGUI>();
-            if(i < m_limitMaxPlayer - 4)
+            var text = m_MaxPlayerCountButtons[i].GetComponentInChildren<TMPro.TextMeshProUGUI>();
+            if(i < limitMaxPlayer - 4)
             {
-                maxPlayerCountButtons[i].GetComponent<Button>().interactable = false;
-                m_text.color = Color.gray;
+                m_MaxPlayerCountButtons[i].GetComponent<Button>().interactable = false;
+                text.color = Color.gray;
             }
             else
             {
-                maxPlayerCountButtons[i].GetComponent<Button>().interactable = true;
-                m_text.color = Color.white;
+                m_MaxPlayerCountButtons[i].GetComponent<Button>().interactable = true;
+                text.color = Color.white;
             }
         }
     }
 
     public void UpdateMaxPlayerCount(int _count)
     {
-        roomData.maxPlayerCount = _count;
+        m_RoomData.maxPlayerCount = _count;
         
-        for(int i = 0; i < maxPlayerCountButtons.Count; i++)
+        for(int i = 0; i < m_MaxPlayerCountButtons.Count; i++)
         {
             if(i == _count - 4)
             {
-                maxPlayerCountButtons[i].color = new Color(1f, 1f, 1f, 1f);
+                m_MaxPlayerCountButtons[i].color = new Color(1f, 1f, 1f, 1f);
             }
             else
             {
-                maxPlayerCountButtons[i].color = new Color(1f, 1f, 1f, 0f);
+                m_MaxPlayerCountButtons[i].color = new Color(1f, 1f, 1f, 0f);
             }
         }
 
@@ -91,46 +91,46 @@ public class CreateRoomUI : MonoBehaviour
     
     private void UpdateCrewImages()
     {
-        for(int i = 0; i < crewImgs.Count; i++)
+        for(int i = 0; i < m_CrewImgs.Count; i++)
         {
-            crewImgs[i].material.SetColor("_PlayerColor", Color.white);
+            m_CrewImgs[i].material.SetColor("_PlayerColor", Color.white);
         }
 
-        int m_imposterCount = roomData.imposterCount;
-        int m_idx = 0;
-        while(m_imposterCount != 0)
+        int imposterCount = m_RoomData.imposterCount;
+        int idx = 0;
+        while(imposterCount != 0)
         {
-            if(m_idx >= roomData.imposterCount)
+            if(idx >= m_RoomData.imposterCount)
             {
-                m_idx = 0;
+                idx = 0;
             }
 
-            if (crewImgs[m_idx].material.GetColor("_PlayerColor") != Color.red && Random.Range(0, 5) == 0)
+            if (m_CrewImgs[idx].material.GetColor("_PlayerColor") != Color.red && Random.Range(0, 5) == 0)
             {
-                crewImgs[m_idx].material.SetColor("_PlayerColor", Color.red);
-                m_imposterCount--;
+                m_CrewImgs[idx].material.SetColor("_PlayerColor", Color.red);
+                imposterCount--;
             }
-            m_idx++;
+            idx++;
         }
 
-        for(int i = 0; i < crewImgs.Count; i++)
+        for(int i = 0; i < m_CrewImgs.Count; i++)
         {
-            if(i < roomData.maxPlayerCount)
+            if(i < m_RoomData.maxPlayerCount)
             {
-                crewImgs[i].gameObject.SetActive(true);
+                m_CrewImgs[i].gameObject.SetActive(true);
             }
             else
             {
-                crewImgs[i].gameObject.SetActive(false);
+                m_CrewImgs[i].gameObject.SetActive(false);
             }
         }
     }
 
     public void CreateRoom()
     {
-        var m_manager = AmongUsRoomManager.singleton;
+        var manager = AmongUsRoomManager.singleton;
         // 방 설정 작업 처리
-        m_manager.StartHost();
+        manager.StartHost();
     }
 
 }

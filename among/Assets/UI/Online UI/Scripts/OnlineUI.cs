@@ -7,35 +7,35 @@ using Mirror;
 public class OnlineUI : MonoBehaviour
 {
     [SerializeField]
-    private TMPro.TMP_InputField nicknameInputField;
+    private TMPro.TMP_InputField m_NicknameInputField;
     [SerializeField]
-    private GameObject createRoomUI;
+    private GameObject m_CreateRoomUI;
 
 
     public void OnClickCreateRoomButton()
     {
-        if(nicknameInputField.text != "")
+        if(m_NicknameInputField.text != "")
         {
-            PlayerSettings.nickname = nicknameInputField.text;
-            createRoomUI.SetActive(true);
+            PlayerSettings.m_Nickname = m_NicknameInputField.text;
+            m_CreateRoomUI.SetActive(true);
             gameObject.SetActive(false);
         }
         else
         {
-            nicknameInputField.GetComponent<Animator>().SetTrigger("on");
+            m_NicknameInputField.GetComponent<Animator>().SetTrigger("on");
         }
     }
 
     public void OnClickEnterGameRoomButton()
     {
-        if (nicknameInputField.text != "")
+        if (m_NicknameInputField.text != "")
         {
-            var m_manager = AmongUsRoomManager.singleton;
-            m_manager.StartClient();
+            var manager = AmongUsRoomManager.singleton;
+            manager.StartClient();
         }
         else
         {
-            nicknameInputField.GetComponent<Animator>().SetTrigger("on");
+            m_NicknameInputField.GetComponent<Animator>().SetTrigger("on");
         }
     }
 }

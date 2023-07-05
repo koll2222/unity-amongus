@@ -12,7 +12,7 @@ public enum EPlayerColor
 
 public class PlayerColor
 {
-    private static List<Color> colors = new List<Color>()
+    private static List<Color> m_Colors = new List<Color>()
     {
         new Color(1f, 0f, 0f),
         new Color(0.1f, 0.1f, 1f),
@@ -28,17 +28,17 @@ public class PlayerColor
         new Color(0.1f, 1f, 0.1f),
     };
 
-    public static Color GetColor(EPlayerColor _playerColor) { return colors[(int)_playerColor]; }
-    public static Color Red { get { return colors[(int)EPlayerColor.Red]; } }
-    public static Color Blue { get { return colors[(int)EPlayerColor.Blue]; } }
-    public static Color Green { get { return colors[(int)EPlayerColor.Green]; } }
-    public static Color Pint { get { return colors[(int)EPlayerColor.Pink]; } }
-    public static Color Orange { get { return colors[(int)EPlayerColor.Orange]; } }
-    public static Color Yellow { get { return colors[(int)EPlayerColor.Yellow]; } }
-    public static Color Black { get { return colors[(int)EPlayerColor.Black]; } }
-    public static Color White { get { return colors[(int)EPlayerColor.White]; } }
-    public static Color Purple { get { return colors[(int)EPlayerColor.Purple]; } }
-    public static Color Brown { get { return colors[(int)EPlayerColor.Brown]; } }
-    public static Color Cyan { get { return colors[(int)EPlayerColor.Cyan]; } }
-    public static Color Lime { get { return colors[(int)EPlayerColor.Lime]; } }
+    public static Color GetColor(EPlayerColor _playerColor) { return m_Colors[(int)_playerColor]; }
+    public static Color Red { get { return m_Colors[(int)EPlayerColor.Red]; } }
+    public static Color Blue { get { return m_Colors[(int)EPlayerColor.Blue]; } }
+    public static Color Green { get { return m_Colors[(int)EPlayerColor.Green]; } }
+    public static Color Pint { get { return m_Colors[(int)EPlayerColor.Pink]; } }
+    public static Color Orange { get { return m_Colors[(int)EPlayerColor.Orange]; } }
+    public static Color Yellow { get { return m_Colors[(int)EPlayerColor.Yellow]; } }
+    public static Color Black { get { return m_Colors[(int)EPlayerColor.Black]; } }
+    public static Color White { get { return m_Colors[(int)EPlayerColor.White]; } }
+    public static Color Purple { get { return m_Colors[(int)EPlayerColor.Purple]; } }
+    public static Color Brown { get { return m_Colors[(int)EPlayerColor.Brown]; } }
+    public static Color Cyan { get { return m_Colors[(int)EPlayerColor.Cyan]; } }
+    public static Color Lime { get { return m_Colors[(int)EPlayerColor.Lime]; } }
 }
